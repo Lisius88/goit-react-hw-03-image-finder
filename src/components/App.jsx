@@ -50,7 +50,7 @@ export class App extends Component {
           if (resp.ok) {
             return resp.json();
           }
-          Promise.reject(new Error('Hahahahahahah'));
+          Promise.reject(new Error('Sorry, something is not OK. Try again'));
         })
         .then(result => {
           console.log(result);
@@ -76,7 +76,7 @@ export class App extends Component {
       <>
         <SearchBar onSubmit={this.handleSubmit} />
         {this.state.error &&
-          toast.error('Sorry, somthing is not OK. Try again')}
+          toast.error('Sorry, something is not OK. Try again')}
         {this.state.loading && <Loader />}
         {this.state.result && <ImageGallery images={this.state.result} />}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
