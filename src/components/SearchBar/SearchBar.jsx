@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Header, SearchButton } from './SearchBar.styled';
 import { FaSearch } from 'react-icons/fa';
 import * as yup from 'yup';
+import PropTypes from 'prop-types';
 
 let schema = yup.object().shape({
   search: yup.string().required(),
@@ -31,7 +32,6 @@ const OurForm = styled(Form)`
 
 export const SearchBar = ({ onSubmit }) => {
   const submit = (values, actions) => {
-    actions.resetForm();
     onSubmit(values.search);
   };
   return (
@@ -57,4 +57,8 @@ export const SearchBar = ({ onSubmit }) => {
       </Formik>
     </Header>
   );
+};
+
+SearchBar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };

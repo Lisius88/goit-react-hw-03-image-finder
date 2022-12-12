@@ -26,7 +26,8 @@ export class Modal extends Component {
   }
 
   render() {
-    const { imageUrl, handleCloseOnClick } = this.props;
+    const { imageUrl } = this.props;
+    const { handleCloseOnClick } = this;
     return createPortal(
       <BackDrop onClick={handleCloseOnClick}>
         <OurModal>

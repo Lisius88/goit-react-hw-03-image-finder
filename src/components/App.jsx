@@ -12,14 +12,11 @@ export class App extends Component {
     loading: false,
     page: 1,
     error: null,
+    total: null,
   };
 
   handleSubmit = value => {
     this.setState({ word: value });
-  };
-
-  kek = () => {
-    console.log('heheh');
   };
 
   onLoadMoreClick = () => {
@@ -58,8 +55,10 @@ export class App extends Component {
             this.setState({ result: result.hits });
           }
           if (result.total === 0) {
-            console.log('heheh');
             toast.error('Try something else');
+          }
+          if (result.total > 11) {
+            this.setState({ total: result.total });
           }
         })
         .catch(error => {
@@ -83,9 +82,12 @@ export class App extends Component {
           {this.state.word !== '' && this.state.page !== 1 && (
             <ButtonPerv onClick={this.onLoadLessClick} />
           )}
-          {this.state.word !== '' && this.state.result !== null && (
-            <Button onClick={this.onLoadMoreClick} />
-          )}
+          {this.state.word !== '' &&
+            this.state.result !== null &&
+            this.state.total > 10 &&
+            this.state.result.length === 12 && (
+              <Button onClick={this.onLoadMoreClick} />
+            )}
         </div>
         <Toaster position="top-right" reverseOrder={false} />
       </>
