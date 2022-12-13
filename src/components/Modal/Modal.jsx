@@ -14,6 +14,7 @@ export class Modal extends Component {
 
   handleCloseOnClick = e => {
     if (e.target !== e.currentTarget) {
+      return;
     }
     this.props.onClose();
   };
